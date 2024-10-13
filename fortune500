@@ -77,3 +77,11 @@ FROM fortune_companies
 GROUP BY industry
 ORDER BY avg_revenue desc
 LIMIT 3;
+
+-- Finding the industries with at least 15 PTO days
+
+SELECT industry, ROUND(AVG(paid_time_off_days),2) AS avg_pto
+FROM fortune_companies
+GROUP BY industry
+HAVING avg_pto >= 17
+ORDER BY avg_pto desc;
