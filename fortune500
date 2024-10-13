@@ -69,3 +69,11 @@ ELSE "Atrocious"
 END AS mother_friendly
 FROM fortune_companies
 ORDER BY mother_friendly;
+
+-- Finding top 3 the highest earning industries based off revenue
+
+SELECT industry, ROUND(AVG(revenue),1) AS avg_revenue
+FROM fortune_companies
+GROUP BY industry
+ORDER BY avg_revenue desc
+LIMIT 3;
