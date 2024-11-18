@@ -1,0 +1,22 @@
+-- This project is ongoing!
+
+-- How many orders were placed in January? 
+SELECT COUNT(orderID) FROM JanSales 
+WHERE LENGTH(orderID) = 6 
+AND orderID NOT NULL; 
+ 
+-- How many orders placed in January where iPhones? 
+SELECT COUNT(Product) FROM JanSales 
+WHERE Product LIKE '%iPhone%' OR '%iphone%' OR '%IPHONE%' 
+AND orderID NOT NULL; 
+
+-- Select all customer account numbers for all orders placed in Feb 
+SELECT DISTINCT acctnum FROM customers 
+INNER JOIN FebSales 
+ON customers.order_id = FebSales.orderID 
+WHERE acctnum NOT NULL 
+AND LENGTH(order_id) = 6; 
+
+-- Which product was the cheapest one sold in January, and what was the price? 
+SELECT DISTINCT Product, price FROM JanSales 
+ORDER BY price LIMIT 1; 
