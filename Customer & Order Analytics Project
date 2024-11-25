@@ -71,6 +71,24 @@ GROUP BY product;
 SELECT SUM(FebSales.quantity*FebSales.price) / COUNT(customers.acctnum) AS AvgAmountPerAccount
 FROM FebSales
 LEFT JOIN customers
+
+
+-- What was the average quantity of products purchased per account in February?
+SELECT SUM(FebSales.quantity) / COUNT(cust.acctnum)
+FROM FebSales
+LEFT JOIN customers cust
+ON FebSales.orderID = cust.order_id
+WHERE LENGTH(orderID) = 6
+AND orderID <> 'Order ID';
+
+-- Which product brought in the most revenue in January and how much revenue did it bring in total?
+SELECT product, SUM(quantity*price)
+FROM JanSales
+WHERE LENGTH(orderID) = 6
+AND orderID <> 'Order ID'
+GROUP BY product
+ORDER BY SUM(quantity*price) desc
+LIMIT 1;
 ON FebSales.orderID = customers.order_id
 WHERE LENGTH(orderID) = 6
 AND orderID <> 'Order ID';
